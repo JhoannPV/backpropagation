@@ -1,0 +1,63 @@
+.main {
+  margin: 0 auto;
+  padding: 2% 0% 2% 0%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 150vh;
+  background-color: white;
+}
+.main hr {
+  width: 97%;
+  border: 1px solid rgba(0, 0, 0, 0.171);
+}
+.main h1,
+h2,
+p {
+  background-color: inherit;
+  margin: 2vh;
+}
+.encabezado {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.cargaDatasetEntrenamiento {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}
+.parametrosEntrada {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}
+
+.ConfigRed {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}
+.formConfigRed {
+  background-color: white;
+}
+.parametrosEntrenamiento {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2vh;
+}

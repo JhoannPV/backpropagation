@@ -46,58 +46,74 @@ function FormConfigRed({ entradas, setConfigRed }) {
   };
   return (
     <Form onSubmit={handleSubmit} style={{ backgroundColor: "white" }}>
-      <Form.Group
-        className="mb-3"
-        controlId="formCapasOcultas"
-        style={{ backgroundColor: "inherit" }}
-      >
-        <Form.Label
-          style={{
-            backgroundColor: "inherit",
-            fontWeight: "bold",
-            fontSize: 20,
-          }}
+      <div style={{ backgroundColor: "inherit" }}>
+        <Form.Group
+          className="mb-3"
+          controlId="formCapasOcultas"
+          style={{ backgroundColor: "inherit" }}
         >
-          Número de Capas Ocultas
-        </Form.Label>
-        <Form.Control
-          required
-          type="number"
-          placeholder="Ingrese el número de capas ocultas"
-          name="capasOcultas"
-          min={1}
-          onChange={handleChangeCapas}
-        />
-      </Form.Group>
-      {capasOcultas.map((capa, index) => (
-        <div key={index} style={{ backgroundColor: "white", marginTop: 45 }}>
-          <Form.Group className="mb-3" style={{ backgroundColor: "inherit" }}>
-            <Form.Label style={{ backgroundColor: "inherit" }}>
-              Número de Neuronas en Capa {index + 1}
-            </Form.Label>
-            <Form.Control
-              required
-              type="number"
-              placeholder="Ingrese el número de neuronas"
-              min={index + 1 === 1 ? entradas * 2 : 1}
-              onChange={(ev) => handleChangeNeuronas(index, ev)}
-            />
-          </Form.Group>
-          <Form.Label style={{ backgroundColor: "inherit" }}>
-            Función de Activación en Capa {index + 1}
-          </Form.Label>
-          <Form.Select
-            aria-label="Función de Activación"
-            value={capa.funcion}
-            onChange={(ev) => handleChangeFuncion(index, ev)}
+          <Form.Label
+            style={{
+              backgroundColor: "inherit",
+              fontWeight: "bold",
+              fontSize: 20,
+            }}
           >
-            <option value="">Seleccione una función de activación</option>
-            <option value="sigmoide">Sigmoide</option>
-            <option value="tangenteHiperbolica">Tangente Hiperbólica</option>
-            <option value="seno">Seno</option>
-          </Form.Select>
-        </div>
-      ))}
+            Número de Capas Ocultas
+          </Form.Label>
+          <Form.Control
+            required
+            type="number"
+            placeholder="Ingrese el número de capas ocultas"
+            name="capasOcultas"
+            min={1}
+            max={3}
+            onChange={handleChangeCapas}
+          />
+        </Form.Group>
+        {numeroCapas > 3 ? (
+          <p style={{ color: "red" }}>Son máximo 3 capas ocultas</p>
+        ) : null}
+      </div>
+      {numeroCapas <= 3
+        ? capasOcultas.map((capa, index) => (
+            <div
+              key={index}
+              style={{ backgroundColor: "white", marginTop: 45 }}
+            >
+              <Form.Group
+                className="mb-3"
+                style={{ backgroundColor: "inherit" }}
+              >
+                <Form.Label style={{ backgroundColor: "inherit" }}>
+                  Número de Neuronas en Capa {index + 1}
+                </Form.Label>
+                <Form.Control
+                  required
+                  type="number"
+                  placeholder="Ingrese el número de neuronas"
+                  min={index + 1 === 1 ? entradas * 2 : 1}
+                  onChange={(ev) => handleChangeNeuronas(index, ev)}
+                />
+              </Form.Group>
+              <Form.Label style={{ backgroundColor: "inherit" }}>
+                Función de Activación en Capa {index + 1}
+              </Form.Label>
+              <Form.Select
+                aria-label="Función de Activación"
+                value={capa.funcion}
+                onChange={(ev) => handleChangeFuncion(index, ev)}
+              >
+                <option value="">Seleccione una función de activación</option>
+                <option value="sigmoide">Sigmoide</option>
+                <option value="tangenteHiperbolica">
+                  Tangente Hiperbólica
+                </option>
+                <option value="seno">Seno</option>
+              </Form.Select>
+            </div>
+          ))
+        : null}
       <Form.Group
         className="mb-3"
         style={{ backgroundColor: "inherit", marginTop: 45 }}

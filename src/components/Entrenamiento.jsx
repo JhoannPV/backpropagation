@@ -8,10 +8,11 @@ function Entrenamiento({
   pesosUmbrales,
 }) {
   const [iteraciones, setIteraciones] = useState(0);
-  const [rataAprendizaje, setRataAprendizaje] = useState(0);
+  const [rataAprendizaje, setRataAprendizaje] = useState();
   const [errorMaximoPermitido, setErrorMaximoPermitido] = useState(0);
 
   console.log(iteraciones, rataAprendizaje, errorMaximoPermitido);
+
   return (
     <>
       <Form
@@ -45,28 +46,34 @@ function Entrenamiento({
             onChange={(ev) => setIteraciones(ev.target.value)}
           />
         </Form.Group>
-        <Form.Group
-          className="mb-3"
-          controlId="formRataAprendizaje"
-          style={{ backgroundColor: "inherit", padding: 10 }}
-        >
-          <Form.Label
-            style={{
-              backgroundColor: "inherit",
-              fontWeight: "bold",
-              fontSize: 20,
-            }}
+        <div style={{ backgroundColor: "inherit" }}>
+          <Form.Group
+            className="mb-3"
+            controlId="formRataAprendizaje"
+            style={{ backgroundColor: "inherit", padding: 10 }}
           >
-            Rata de Aprendizaje
-          </Form.Label>
-          <Form.Control
-            required
-            type="number"
-            placeholder="Ingrese la rata de aprendizaje"
-            name="iteraciones"
-            onChange={(ev) => setRataAprendizaje(ev.target.value)}
-          />
-        </Form.Group>
+            <Form.Label
+              style={{
+                backgroundColor: "inherit",
+                fontWeight: "bold",
+                fontSize: 20,
+              }}
+            >
+              Rata de Aprendizaje
+            </Form.Label>
+            <Form.Control
+              required
+              type="number"
+              placeholder="Ingrese la rata de aprendizaje"
+              name="rataAprendizaje"
+              max={1}
+              onChange={(ev) => setRataAprendizaje(ev.target.value)}
+            />
+          </Form.Group>
+          {rataAprendizaje <= 0 ? (
+            <p style={{ color: "red" }}>Debe ser mayor a cero</p>
+          ) : null}
+        </div>
         <Form.Group
           className="mb-3"
           controlId="formErrorMaximoPermitido"
